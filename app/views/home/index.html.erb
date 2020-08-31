@@ -1,0 +1,13 @@
+<%=link_to 'logout',destroy_user_session_path , method: :delete%>
+
+
+<%= form_for @room , url:create_path do |f| %>
+    <%= f.label :room_name %>
+    <%= f.text_field :name, placeholder: 'Room Name'%>
+    <%= f.submit 'Submit'%>
+<%end%>
+<ul>
+    <% @rooms.each do |room|%>
+       <li> <%= room.name%><%= link_to 'join',join_path(room)%></li>
+    <%end%>
+</ul>
