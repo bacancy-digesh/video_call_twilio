@@ -1,0 +1,20 @@
+<div id="session-details" data-name=<%= @session.unique_room %> >
+</div>
+<script src='https://meet.jit.si/external_api.js'></script>
+<script>
+const domain = 'meet.jit.si';
+var div = document.getElementById('session-details');
+var class_name = div.getAttribute("data-name");
+const options = {
+    roomName: class_name,
+    width: 1000,
+    height: 700,
+    // parentNode: document.querySelector('#meet')
+};
+const api = new JitsiMeetExternalAPI(domain, options);
+// join a protected channel
+// api.on('passwordRequired', function ()
+// {
+//     api.executeCommand('password', pass);
+// });
+</script>

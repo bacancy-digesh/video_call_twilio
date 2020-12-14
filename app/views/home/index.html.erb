@@ -1,13 +1,67 @@
 <%=link_to 'logout',destroy_user_session_path , method: :delete%>
 
 
-<%= form_for @room , url:create_path do |f| %>
-    <%= f.label :room_name %>
-    <%= f.text_field :name, placeholder: 'Room Name'%>
-    <%= f.submit 'Submit'%>
+<%# <%= form_for @room , url:create_path do |f| %> 
+    <%# <%= f.label :room_name %> 
+    <%# <%= f.text_field :name, placeholder: 'Room Name'%> 
+    <%# <%= f.submit 'Submit'%> 
+<%# <%end%> 
+<%# <ul> %>
+    <%# <% @rooms.each do |room|%> 
+       <%# <li> <%= room.name= link_to 'join',join_path(room)</li>  %>
+    <%# <%end%> 
+<%# </ul> %>
+
+<%= form_for @session , url:create_session_path do |f| %> 
+    <%= f.label :title %>
+    <%= f.text_field :title, placeholder: 'Title' %>
+    <%= f.label :description %>
+    <%= f.text_field :description, placeholder: 'Description' %>
+    <%= f.submit 'Submit' %>
 <%end%>
-<ul>
-    <% @rooms.each do |room|%>
-       <li> <%= room.name%><%= link_to 'join',join_path(room)%></li>
+<br>
+<br>
+<br>
+<h2>All Sessions</h2>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+    </tr>
+    <% @sessions.each do |session|%>
+    <tr>
+        <td><%= session.title%></td>
+        <td><%=session.description%></td>
+        <td><%= link_to "participate", user_participate_path(session)%>
+    </tr>
     <%end%>
-</ul>
+</table>
+
+<h2> Your created session</h2>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+    </tr>
+    <% @user_sessions.each do |session|%>
+    <tr>
+        <td><%= session.title%></td>
+        <td><%=session.description%></td>
+    </tr>
+    <%end%>
+</table>
+
+<h2> Participate session</h2>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+    </tr>
+    <% @participate_sessions.each do |session|%>
+    <tr>
+        <td><%= session.title%></td>
+        <td><%=session.description%></td>
+        <td><%= link_to "Join", join_session_path(session), target: '_blank' %></td>
+    </tr>
+    <%end%>
+</table>

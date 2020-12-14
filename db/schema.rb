@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_26_113355) do
+ActiveRecord::Schema.define(version: 2020_12_14_085246) do
 
   create_table "rooms", force: :cascade do |t|
     t.integer "user_id"
@@ -20,6 +20,26 @@ ActiveRecord::Schema.define(version: 2020_08_26_113355) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_rooms_on_user_id"
+  end
+
+  create_table "session_participates", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "session_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["session_id"], name: "index_session_participates_on_session_id"
+    t.index ["user_id"], name: "index_session_participates_on_user_id"
+  end
+
+  create_table "sessions", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "unique_room"
+    t.string "unique_password"
+    t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

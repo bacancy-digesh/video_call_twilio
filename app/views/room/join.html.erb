@@ -49,7 +49,7 @@
 
   const localTracks = await Video.createLocalTracks({
    audio: true,
-   video: { height: 520, frameRate: 24, width: 1000 },
+   video: { height: 720, frameRate: 24, width: 1280 },
   });
  try {
    room = await Video.connect(gon.token, {
@@ -61,8 +61,8 @@
           maxTracks: 10,
           dominantSpeakerPriority: 'standard',
           renderDimensions: {
-            <%# high: {height:1080, width:1920}, %>
-            standard: {height:520, width:1000},
+            high: {height:1080, width:1920},
+            // standard: {height:520, width:1000},
             <%# low: {height:176, width:144} %>
           }
         }
@@ -70,7 +70,7 @@
       dominantSpeaker: true,
       maxAudioBitrate: 16000,
       preferredVideoCodecs: [{ codec: 'VP8', simulcast: true }],
-      networkQuality: {local:1, remote: 1}
+      networkQuality: {local:1, remote: 2}
   });
  } catch (error) {
    console.log(error);
